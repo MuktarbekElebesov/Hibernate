@@ -8,14 +8,15 @@ import java.util.List;
 
 @Entity
 @Table
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "course_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_gen")
     @SequenceGenerator(name = "course_gen", sequenceName = "course_seq", allocationSize = 1)
     private Long id;
     @Column(unique = true)

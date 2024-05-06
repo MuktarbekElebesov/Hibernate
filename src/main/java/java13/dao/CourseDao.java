@@ -7,8 +7,11 @@ import java.util.List;
 
 public interface CourseDao {
     String createCourse(Course course);
+
     Course getCourseById(Long courseId);
+
     String updateCourse(Long courseId, Course newCourse);
+
     String deleteCourseById(Long courseId);
 
 }

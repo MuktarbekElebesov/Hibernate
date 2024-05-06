@@ -11,26 +11,27 @@ import org.hibernate.HibernateException;
 
 public class CourseDaoImpl implements CourseDao {
     EntityManagerFactory entityManagerFactory = HibernateConfig.getEntityManagerFactory();
+
     @Override
     public String createCourse(Course course) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()){
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             entityManager.getTransaction().begin();
             entityManager.persist(course);
             entityManager.getTransaction().commit();
             return "Success";
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             return e.getMessage();
         }
     }
 
     @Override
     public Course getCourseById(Long courseId) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()){
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             entityManager.getTransaction().begin();
-            Query query = entityManager.createQuery("select c from Course c where c.id = :courseId").setParameter("courseId",courseId);
-            Course getCourse =(Course) query.getSingleResult();
+            Query query = entityManager.createQuery("select c from Course c where c.id = :courseId").setParameter("courseId", courseId);
+            Course getCourse = (Course) query.getSingleResult();
             return getCourse;
-        }catch (HibernateException e){
+        } catch (HibernateException e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -38,12 +39,12 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public String updateCourse(Long courseId, Course newCourse) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()){
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             entityManager.getTransaction().begin();
             entityManager.createQuery("update Course c set c.courseName =:courseName, c.description = :price where c.id =:courseId")
-                    .setParameter("courseName",newCourse.getCourseName())
-                    .setParameter("description",newCourse.getDescription())
-                    .setParameter("courseId",newCourse.getId());
+                    .setParameter("courseName", newCourse.getCourseName())
+                    .setParameter("description", newCourse.getDescription())
+                    .setParameter("courseId", newCourse.getId());
         }
         return null;
     }

@@ -7,6 +7,7 @@ import java13.service.CourseService;
 
 public class CourseServiceImpl implements CourseService {
     CourseDao courseDao = new CourseDaoImpl();
+
     @Override
     public String createCourse(Course course) {
         return courseDao.createCourse(course);
@@ -19,11 +20,11 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public String updateCourse(Long courseId, Course newCourse) {
-        return courseDao.updateCourse(courseId,newCourse);
+        return courseDao.updateCourse(courseId, newCourse);
     }
 
     @Override
     public String deleteCourseById(Long courseId) {
-        return null;
+        return courseDao.deleteCourseById(courseId);
     }
 }

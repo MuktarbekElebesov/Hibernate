@@ -46,7 +46,7 @@ public class StudentDaoImpl implements StudentDao {
                     .setParameter("fullName", newStudents.getFullName())
                     .setParameter("email", newStudents.getEmail())
                     .setParameter("studentId", newStudents.getId());
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             System.out.println(e.getMessage());
         }
         return null;
